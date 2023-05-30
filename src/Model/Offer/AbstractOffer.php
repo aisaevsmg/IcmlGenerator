@@ -176,6 +176,8 @@ abstract class AbstractOffer implements OfferInterface
      */
     private $customElements;
 
+    private $customAttributes;
+
     /**
      * @var OfferCondition
      */
@@ -830,6 +832,20 @@ abstract class AbstractOffer implements OfferInterface
     }
 
     /**
+     * Sets list of custom attributes
+     *
+     * @param array $customAttributes Array (keys are attrubute types) of arrays (attribute values)
+     *
+     * @return $this
+     */
+    public function setCustomAttributes(array $customAttributes = [])
+    {
+        $this->customAttributes = $customAttributes;
+
+        return $this;
+    }
+
+    /**
      * Add a custom element with given type and value
      * Multiple elements of the same type are supported
      *
@@ -857,6 +873,11 @@ abstract class AbstractOffer implements OfferInterface
     public function getCustomElements()
     {
         return $this->customElements ?: [];
+    }
+
+    public function getCustomAttributes()
+    {
+        return $this->customAttributes ?: [];
     }
 
     /**

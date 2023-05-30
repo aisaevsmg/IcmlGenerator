@@ -199,6 +199,11 @@ class Generator
     {
         $this->writer->startElement('offer');
         $this->writer->writeAttribute('id', $offer->getId());
+        if (method_exists($offer, 'getCustomAttributes') && $customAttributes = $offer->getCustomAttributes()) {
+            foreach ($customAttributes as $attributeName => $attributeValue) {
+                $this->writer->writeAttribute($attributeName, $attributeValue);
+            }
+        }
         $this->writer->writeAttribute('available', $offer->isAvailable() ? 'true' : 'false');
 
         if ($offer->getType() !== null) {
